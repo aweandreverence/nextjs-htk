@@ -123,6 +123,48 @@ const sitemap = generateSitemap(config)
 
 The generated script (`src/scripts/generate_sitemap.ts`) automatically uses your `htk.config.ts` to generate the sitemap during build.
 
+### Internationalization Helpers
+
+Build locale-aware paths, language alternates, localized route lists, and language switcher links for static multilingual sites:
+
+```typescript
+import {
+  buildLanguageAlternates,
+  buildLanguageSwitchLinks,
+  buildLocalizedPath,
+  type I18nConfig,
+} from '@hacktoolkit/nextjs-htk/utils'
+
+type LocaleCode = 'en' | 'es' | 'zh'
+
+const i18n: I18nConfig<LocaleCode> = {
+  defaultLocale: 'en',
+  locales: [
+    { code: 'en', name: 'English', nativeName: 'English', htmlLang: 'en' },
+    { code: 'es', name: 'Spanish', nativeName: 'Español', htmlLang: 'es' },
+    { code: 'zh', name: 'Chinese', nativeName: '中文', htmlLang: 'zh-Hans' },
+  ],
+}
+
+const spanishGospelPath = buildLocalizedPath({
+  locale: 'es',
+  path: '/gospel',
+  defaultLocale: i18n.defaultLocale,
+})
+
+const alternates = buildLanguageAlternates(i18n, '/gospel', {
+  siteUrl: 'https://example.com',
+})
+
+const switchLinks = buildLanguageSwitchLinks(i18n, {
+  currentLocale: 'en',
+  path: '/gospel',
+  availableLocales: ['en', 'es', 'zh'],
+})
+```
+
+The helpers keep default English routes unprefixed by default (`/gospel`) while generating prefixed translated routes (`/es/gospel`, `/zh/gospel`).
+
 ## Components
 
 Components will be added in upcoming releases:
