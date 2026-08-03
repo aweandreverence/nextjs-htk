@@ -1,7 +1,7 @@
 export type LocaleDirection = 'ltr' | 'rtl'
 
 export interface LocaleDefinition<Code extends string = string> {
-  /** URL/path code, e.g. "en", "es", "zh". */
+  /** URL/path code, e.g. "en", "es", "zh-hans", "zh-hant". */
   code: Code
   /** English/admin display name. */
   name: string

@@ -135,14 +135,25 @@ import {
   type I18nConfig,
 } from '@hacktoolkit/nextjs-htk/utils'
 
-type LocaleCode = 'en' | 'es' | 'zh'
+type LocaleCode = 'en' | 'es' | 'zh-hans' | 'zh-hant'
 
 const i18n: I18nConfig<LocaleCode> = {
   defaultLocale: 'en',
   locales: [
     { code: 'en', name: 'English', nativeName: 'English', htmlLang: 'en' },
     { code: 'es', name: 'Spanish', nativeName: 'Español', htmlLang: 'es' },
-    { code: 'zh', name: 'Chinese', nativeName: '中文', htmlLang: 'zh-Hans' },
+    {
+      code: 'zh-hans',
+      name: 'Chinese (Simplified)',
+      nativeName: '简体中文',
+      htmlLang: 'zh-Hans',
+    },
+    {
+      code: 'zh-hant',
+      name: 'Chinese (Traditional)',
+      nativeName: '繁體中文',
+      htmlLang: 'zh-Hant',
+    },
   ],
 }
 
@@ -159,11 +170,11 @@ const alternates = buildLanguageAlternates(i18n, '/gospel', {
 const switchLinks = buildLanguageSwitchLinks(i18n, {
   currentLocale: 'en',
   path: '/gospel',
-  availableLocales: ['en', 'es', 'zh'],
+  availableLocales: ['en', 'es', 'zh-hans', 'zh-hant'],
 })
 ```
 
-The helpers keep default English routes unprefixed by default (`/gospel`) while generating prefixed translated routes (`/es/gospel`, `/zh/gospel`).
+The helpers keep default English routes unprefixed by default (`/gospel`) while generating prefixed translated routes (`/es/gospel`, `/zh-hans/gospel`, `/zh-hant/gospel`).
 
 ## Components
 
