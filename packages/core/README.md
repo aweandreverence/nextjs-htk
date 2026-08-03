@@ -157,24 +157,24 @@ const i18n: I18nConfig<LocaleCode> = {
   ],
 }
 
-const spanishGospelPath = buildLocalizedPath({
+const spanishAboutPath = buildLocalizedPath({
   locale: 'es',
-  path: '/gospel',
+  path: '/about',
   defaultLocale: i18n.defaultLocale,
 })
 
-const alternates = buildLanguageAlternates(i18n, '/gospel', {
+const alternates = buildLanguageAlternates(i18n, '/about', {
   siteUrl: 'https://example.com',
 })
 
 const switchLinks = buildLanguageSwitchLinks(i18n, {
   currentLocale: 'en',
-  path: '/gospel',
+  path: '/about',
   availableLocales: ['en', 'es', 'zh-hans', 'zh-hant'],
 })
 ```
 
-The helpers keep default English routes unprefixed by default (`/gospel`) while generating prefixed translated routes (`/es/gospel`, `/zh-hans/gospel`, `/zh-hant/gospel`).
+The helpers keep default English routes unprefixed by default (`/about`) while generating prefixed translated routes (`/es/about`, `/zh-hans/about`, `/zh-hant/about`).
 
 ## Components
 
